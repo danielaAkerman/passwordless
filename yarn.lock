@@ -992,7 +992,7 @@ json-stringify-safe@^5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
 
-jsonwebtoken@^9.0.0:
+jsonwebtoken@^9.0.0, jsonwebtoken@^9.0.2:
   version "9.0.2"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-9.0.2.tgz#65ff91f4abef1784697d40952bb1998c504caaf3"
   integrity sha512-PRp66vJ865SSqOlgqS8hujT5U4AOgMfhrwYIuIhfKaoSCZcirrmASQr8CX7cUg+RMih+hgznrjp99o+W4pJLHQ==
@@ -1318,6 +1318,11 @@ p-limit@^3.0.1:
   integrity sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==
   dependencies:
     yocto-queue "^0.1.0"
+
+parse-bearer-token@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/parse-bearer-token/-/parse-bearer-token-1.0.1.tgz#43b5222a8e6e73e4c8e44973c95856548452b266"
+  integrity sha512-64FLw+pKZQPnoHqryZ7aGqpIc5ud2Xe1TnxBbK5CmUhJtYjVTKt//BLTP/zYhVs3O5OWsCDdqyoPnYd3SivQOA==
 
 path-is-absolute@^1.0.0:
   version "1.0.1"
