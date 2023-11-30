@@ -34,5 +34,6 @@ export async function sendCode(email: string) {
     auth.data.code = code
     auth.data.expires = twentyMinutesFromNow
     await auth.push()
-    return { auth }
+    console.log("email enviado a " + email + " con el dódigo " + auth.data.code)
+    return true
 }

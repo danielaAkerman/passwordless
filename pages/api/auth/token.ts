@@ -7,8 +7,22 @@ import { sendCode } from "lib/controllers/auth"
 import jwt from "jsonwebtoken"
 import { generate } from "lib/jwt"
 
+
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const token = generate({ userId: 'Siq1acapuQEi2T96cMJs' })
+    const { email, code } = req.body
+    const auth = await Auth.findByEmailAndCode(email, code)
+    if (!auth) {
+        res.status(401).send({ message: "Email or code incorrect" })
+    }
+
+    const expires = auth.isCodeExpired()
+    if (expires) {
+        res.status(401).send({ message: "Code expirado" })
+    }
+    const token = generate({ userId: auth.data.userId })
     res.send({ token })
+
+
+
 }
 

@@ -1,4 +1,5 @@
 import { firestore } from "./firestore";
+import isAfter from "date-fns/isAfter"
 
 const collection = firestore.collection("auth")
 
@@ -17,8 +18,13 @@ export class Auth {
     async push() {
         this.ref.update(this.data)
     }
+    isCodeExpired() {
+        const now = new Date()
+        const expires = this.data.expires.toDate()
+        return isAfter(now, expires)
+    }
     static async findByEmail(email: string) {
-        const cleanEmail = email.trim().toLocaleLowerCase()
+        const cleanEmail = Auth.cleanEmail(email)
         const results = await collection.where("email", "==", cleanEmail).get()
         if (results.docs.length) {
             const first = results.docs[0]
@@ -33,4 +39,24 @@ export class Auth {
         newUser.data = data
         return newUser
     }
+    static cleanEmail(email: string) {
+        return email.trim().toLocaleLowerCase()
+    }
+    static async findByEmailAndCode(email: string, code: number) {
+        const cleanEmail = Auth.cleanEmail(email)
+        const result = await collection.where('email', '==', cleanEmail).where("code", "==", code).get()
+        if (result.empty) {
+            console.error("email y code no coinciden")
+            return null
+        } else {
+            const doc = result.docs[0]
+            const auth = new Auth(doc.id)
+            auth.data = doc.data()
+            return auth
+        }
+
+    }
 }
+
+
+// MIN 09
